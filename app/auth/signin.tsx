@@ -1,5 +1,6 @@
 import { Text, View, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import React, { useState } from "react";
+import Checkbox from 'expo-checkbox';
 
 
 export default function SignIn() {
@@ -45,6 +46,24 @@ export default function SignIn() {
                                 value={password}
                                 onChangeText={setPassword}
                             />
+                        </View>
+
+                        {/* Additional Links */}
+                        <View style={styles.row}>
+                            <View style={styles.checkboxContainer}>
+                                <TouchableOpacity
+                                    style={styles.checkboxContainer}
+                                    onPress={() => setChecked(!isChecked)} // Toggle checkbox when text or box is pressed
+                                >
+                                    <Checkbox
+                                        style={styles.checkbox}
+                                        value={isChecked}
+                                        onValueChange={setChecked} // Toggle checkbox when clicked
+                                        color={isChecked ? "#000" : undefined} // Set color to black when checked
+                                    />
+                                </TouchableOpacity>
+                                <Text style={styles.checkboxText}>Show Password</Text>
+                            </View>
                         </View>
 
                         {/* Buttons Section */}
@@ -118,6 +137,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        marginBottom: 15,
     },
     checkboxContainer: {
         flexDirection: "row",
